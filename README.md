@@ -1,11 +1,14 @@
 # ABL 台灣隊賽程機器人 🇹🇼
 
+這是我最近為了準備去 GDG Taichung 所做的 Side project，主要是因為最近看球賽看太多，因為賽程表都是固定的索性自己弄了一隻機器人出來查詢賽程。
+
+主要用到下面兩個技術:
 - [Bottender](https://github.com/Yoctol/bottender)
 - Dialogflow: 負責分析使用者意圖
 
 ## 加入好友
 
-<img height="200" border="0" alt="QRcode" src="![](https://i.imgur.com/WWcrP98.png)">
+<img height="200" border="0" alt="QRcode" src="https://i.imgur.com/WWcrP98.png">
 
 <a href="https://line.me/R/ti/p/%40144vqxgp"><img height="50" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
 
