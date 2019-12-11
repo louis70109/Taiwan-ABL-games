@@ -1,52 +1,34 @@
-This project was bootstrapped with
-[Bottender](https://github.com/Yoctol/bottender) init script.
+# ABL 台灣隊賽程機器人 🇹🇼
 
-## Sending Feedback
+- [Bottender](https://github.com/Yoctol/bottender)
+- Dialogflow: 負責分析使用者意圖
 
-Always feel free to open issue to
-[Bottender](https://github.com/Yoctol/bottender/issues).
+## 加入好友
 
-## Folder Structure
+<img height="200" border="0" alt="QRcode" src="![](https://i.imgur.com/WWcrP98.png)">
 
-After creation, your project should look like this:
+<a href="https://line.me/R/ti/p/%40144vqxgp"><img height="50" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
+
+## 準備
+需要擁有 Dialogflow API 的 json key，若不知怎麼申請拿到的話可以參考[我的部落格](https://nijialin.com/2019/12/10/Bottender-x-Dialogflow-x-LINE/)
 
 ```
-my-bot/
-  .gitignore
-  node_modules/
-  bottender.config.js
-  index.js
-  package.json
-  README.md
-  yarn.lock
+LINE_ACCESS_TOKEN=
+LINE_CHANNEL_SECRET=
+GOOGLE_APPLICATION_CREDENTIALS=
+GOOGLE_APPLICATION_PROJECT_ID=
 ```
+主要用到上述的四個 key，前兩個是 LINE bot 所需要的，後兩個則是 Dialogflow 的 Key。
 
-### index.js
+## 本地端測試
+```
+yarn install
+npx bottender dev --console
+```
+### 範例內容
+- 富邦勇士下一場球賽
+- 夢想家下次賽程何時
+- 富邦今天的比賽
+- 寶島夢想家今日賽程表
 
-All functionalities start from here.\
-Mainly it's a server which listen on port 5000. You are encouraged to add more [event listener](https://bottender.js.org/docs/APIReference-Event?new)
-and [`Handler`](https://bottender.js.org/docs/APIReference-Handler?new) to enrich the bot.
-
-See more examples, please refer to
-[Bottender examples](https://github.com/Yoctol/bottender/tree/master/examples).
-
-### bottender.config.js
-
-The config file for the bot.\
-We suggests you to put all platform configs into this file and use it as a parameter
-of createServer.
-
-## Available Scripts
-
-There are two default scripts you can run:
-
-### `npm run dev`
-
-Run the bot in the development mode.\
-It will automatically restart the bot if there are any changes in `index.js`.\
-For more information, check [nodemon's repo](https://github.com/remy/nodemon)
-
-### `npm start`
-
-Run the bot without being monitored.\
-The bot won't be restarted when you change anything in `index.js`
+可以透過以上內容去對應測試，就會得到 Dialogflow 幫忙輸出的意圖。
