@@ -35,3 +35,7 @@ npx bottender dev --console
 - 寶島夢想家今日賽程表
 
 可以透過以上內容去對應測試，就會得到 Dialogflow 幫忙輸出的意圖。
+
+## 部署
+
+> 開墾中...
