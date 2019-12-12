@@ -12,11 +12,11 @@ function select_team(team) {
     name = '寶島夢想家';
     games = dreamerGames;
   }
-  return name, games;
+  return [name, games];
 }
 async function find_next_game_by_team(context, name) {
   let now = moment().format('YYYY-MM-DD HH:mm');
-  let team, games = select_team(name);
+  let [team, games] = select_team(name);
   // next game
   for (let index = 0; index < games.length; index++) {
     const el = games[index];
@@ -33,7 +33,7 @@ async function find_next_game_by_team(context, name) {
 
 async function find_current_game(context, name) {
   let now = moment().format('YYYY-MM-DD');
-  let team, games = select_team(name);
+  let [team, games] = select_team(name);
   let today = true;
   for (let index = 0; index < games.length; index++) {
     const el = games[index];
