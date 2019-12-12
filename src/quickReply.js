@@ -1,5 +1,3 @@
-const { isArray } = require('lodash');
-
 function toTextAction(text) {
   return {
     type: 'action',
@@ -12,10 +10,7 @@ function toTextAction(text) {
 }
 
 module.exports = function quickReply(textOrTexts) {
-  let texts = textOrTexts;
-  if (!isArray(texts)) {
-    texts = [texts];
-  }
+  const texts = Array.isArray(textOrTexts) ? textOrTexts : [textOrTexts];
 
   return {
     quickReply: {
