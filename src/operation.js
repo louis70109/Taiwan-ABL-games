@@ -1,9 +1,10 @@
+const moment = require('moment');
+
+const quickReply = require('./quickReply');
 const fubonGames = require('./fubonGames.json');
 const dreamerGames = require('./dreamerGames.json');
-const moment = require('moment');
-const quickReply = require('./quickReply');
 
-function select_team(team) {
+function selectTeam(team) {
   let name, games;
   if (team === '富邦') {
     name = '台北富邦勇士';
@@ -14,34 +15,48 @@ function select_team(team) {
   }
   return [name, games];
 }
-async function find_next_game_by_team(context, name) {
+async function FindNextGame(context, { name }) {
   let now = moment().format('YYYY-MM-DD HH:mm');
-  let [team, games] = select_team(name);
+  let [team, games] = selectTeam(name);
   // next game
   for (let index = 0; index < games.length; index++) {
-    const el = games[index];
-    if (now < el.time) {
-      const lord = el.challenge.split('vs');
+    const game = games[index];
+    if (now < game.time) {
+      const lord = game.challenge.split('vs');
       await context.sendText(
-        `【${name}下次賽程】(${lord[1] === team ? "主場" : "客場"})\n🏀 ${el.challenge}\n📍 ${el.location ? el.location : "查無此項"}\n⏰ ${el.time}`,
-        quickReply(['富邦下一場', '夢想家下一場', '富邦今天賽程', '夢想家今日賽程'])
+        `【${name}下次賽程】(${lord[1] === team ? '主場' : '客場'})\n🏀 ${
+          game.challenge
+        }\n📍 ${game.location ? game.location : '查無此項'}\n⏰ ${game.time}`,
+        quickReply([
+          '富邦下一場',
+          '夢想家下一場',
+          '富邦今天賽程',
+          '夢想家今日賽程',
+        ])
       );
-      break;
+      return;
     }
   }
 }
 
-async function find_current_game(context, name) {
+async function FindCurrentGame(context, { name }) {
   let now = moment().format('YYYY-MM-DD');
-  let [team, games] = select_team(name);
+  let [team, games] = selectTeam(name);
   let today = true;
   for (let index = 0; index < games.length; index++) {
-    const el = games[index];
-    if (now === moment(el.time).format('YYYY-MM-DD')) {
-      const lord = el.challenge.split('vs');
+    const game = games[index];
+    if (now === moment(game.time).format('YYYY-MM-DD')) {
+      const lord = game.challenge.split('vs');
       await context.sendText(
-        `【${name}今日賽程】(${lord[1] === team ? "主場" : "客場"})\n🏀 ${el.challenge}\n📍 ${el.location ? el.location : "查無此項"}\n⏰ ${el.time}`,
-        quickReply(['富邦下一場', '夢想家下一場', '富邦今天賽程', '夢想家今日賽程'])
+        `【${name}今日賽程】(${lord[1] === team ? '主場' : '客場'})\n🏀 ${
+          game.challenge
+        }\n📍 ${game.location ? game.location : '查無此項'}\n⏰ ${game.time}`,
+        quickReply([
+          '富邦下一場',
+          '夢想家下一場',
+          '富邦今天賽程',
+          '夢想家今日賽程',
+        ])
       );
       today = false;
       break;
@@ -50,12 +65,17 @@ async function find_current_game(context, name) {
   if (today) {
     await context.sendText(
       `【${name}】今天沒有比賽哦！🏀`,
-      quickReply(['富邦下一場', '夢想家下一場', '富邦今天賽程', '夢想家今日賽程'])
+      quickReply([
+        '富邦下一場',
+        '夢想家下一場',
+        '富邦今天賽程',
+        '夢想家今日賽程',
+      ])
     );
   }
 }
 
 module.exports = {
-  find_next_game_by_team,
-  find_current_game,
+  FindNextGame,
+  FindCurrentGame,
 };

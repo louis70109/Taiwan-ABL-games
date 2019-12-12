@@ -1,13 +1,17 @@
 const dialogflow = require('dialogflow');
-const { format } = require('date-fns'); 
-const { find_next_game_by_team, find_current_game } = require('./operation')
+const { withProps } = require('bottender');
+
+const { FindNextGame, FindCurrentGame } = require('./operation');
 
 const PROJECT_ID = process.env.GOOGLE_APPLICATION_PROJECT_ID;
 
 const sessionClient = new dialogflow.SessionsClient();
 
-module.exports = async function App(context) {
+async function Unknown(context) {
+  await context.sendText('您輸入的內容我不懂哦~🏀');
+}
 
+module.exports = async function App(context) {
   if (context.event.isText) {
     const sessionPath = sessionClient.sessionPath(
       PROJECT_ID,
@@ -27,16 +31,18 @@ module.exports = async function App(context) {
     };
 
     const responses = await sessionClient.detectIntent(request);
-    const { intent, parameters } = responses[0].queryResult;
+    const { intent } = responses[0].queryResult;
 
     if (intent.displayName === 'fubon-next-game') {
-      find_next_game_by_team(context, '富邦');
+      return withProps(FindNextGame, { name: '富邦' });
     } else if (intent.displayName === 'dreamer-next-game') {
-      find_next_game_by_team(context, '夢想家');
+      return withProps(FindNextGame, { name: '夢想家' });
     } else if (intent.displayName === 'dreamer-current-game') {
-      find_current_game(context, '夢想家');
+      return withProps(FindCurrentGame, { name: '夢想家' });
     } else if (intent.displayName === 'fubon-current-game') {
-      find_current_game(context, '富邦');
-    } else await context.sendText('您輸入的內容我不懂哦~🏀');
+      return withProps(FindCurrentGame, { name: '富邦' });
+    }
+
+    return Unknown;
   }
 };
