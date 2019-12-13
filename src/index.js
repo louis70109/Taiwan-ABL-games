@@ -1,7 +1,7 @@
 const dialogflow = require('dialogflow');
 const { withProps } = require('bottender');
 
-const { FindNextGame, FindCurrentGame } = require('./operation');
+const { FindNextGame, FindTodayGame } = require('./operation');
 
 const PROJECT_ID = process.env.GOOGLE_APPLICATION_PROJECT_ID;
 
@@ -38,9 +38,9 @@ module.exports = async function App(context) {
     } else if (intent.displayName === 'dreamer-next-game') {
       return withProps(FindNextGame, { name: '夢想家' });
     } else if (intent.displayName === 'dreamer-current-game') {
-      return withProps(FindCurrentGame, { name: '夢想家' });
+      return withProps(FindTodayGame, { name: '夢想家' });
     } else if (intent.displayName === 'fubon-current-game') {
-      return withProps(FindCurrentGame, { name: '富邦' });
+      return withProps(FindTodayGame, { name: '富邦' });
     }
 
     return Unknown;
