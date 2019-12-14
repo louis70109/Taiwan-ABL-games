@@ -32,6 +32,7 @@ module.exports = async function App(context) {
 
     const responses = await sessionClient.detectIntent(request);
     const { intent } = responses[0].queryResult;
+    if (!intent) return Unknown;
 
     if (intent.displayName === 'fubon-next-game') {
       return withProps(FindNextGame, { name: '富邦' });
@@ -42,7 +43,5 @@ module.exports = async function App(context) {
     } else if (intent.displayName === 'fubon-current-game') {
       return withProps(FindTodayGame, { name: '富邦' });
     }
-
-    return Unknown;
   }
 };

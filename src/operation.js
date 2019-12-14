@@ -1,23 +1,20 @@
 const moment = require('moment');
 
 const quickReply = require('./quickReply');
-const fubonGames = require('./fubonGames.json');
-const dreamerGames = require('./dreamerGames.json');
+
+const TEAMS = {
+  富邦: {
+    name: '台北富邦勇士',
+    games: require('./fubonGames.json'),
+  },
+  夢想家: {
+    name: '寶島夢想家',
+    games: require('./dreamerGames.json'),
+  },
+};
 
 function selectTeam(team) {
-  let name, games;
-  if (team === '富邦') {
-    name = '台北富邦勇士';
-    games = fubonGames;
-  } else {
-    name = '寶島夢想家';
-    games = dreamerGames;
-  }
-
-  return {
-    name: name,
-    games: games,
-  };
+  return TEAMS[team] || {};
 }
 
 async function ReplyGameMessage(context, { team, subName, gameList }) {
@@ -76,6 +73,7 @@ async function FindTodayGame(context, { name }) {
 }
 
 module.exports = {
-  FindNextGame,
+  selectTeam,
   FindTodayGame,
+  FindNextGame,
 };
