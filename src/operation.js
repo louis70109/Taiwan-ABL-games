@@ -13,18 +13,22 @@ function selectTeam(team) {
     name = '寶島夢想家';
     games = dreamerGames;
   }
-  return [name, games];
+
+  return {
+    name: name,
+    games: games,
+  };
 }
 
 async function FindNextGame(context, { name }) {
   let now = moment();
-  let [team, games] = selectTeam(name);
+  let team = selectTeam(name);
 
-  const nextGame = games.find(game => now.isBefore(game.time));
+  const nextGame = team.games.find(game => now.isBefore(game.time));
 
   const isLord = nextGame.challenge.split('vs')[1] === team;
   await context.sendText(
-    `【${name}下次賽程】(${isLord ? '主場' : '客場'})\n🏀 ${
+    `【${team.name}下次賽程】(${isLord ? '主場' : '客場'})\n🏀 ${
       nextGame.challenge
     }\n📍 ${nextGame.location ? nextGame.location : '查無此項'}\n⏰ ${
       nextGame.time
@@ -35,13 +39,13 @@ async function FindNextGame(context, { name }) {
 
 async function FindTodayGame(context, { name }) {
   let now = moment();
-  let [team, games] = selectTeam(name);
+  let team = selectTeam(name);
 
-  const todayGame = games.find(game => now.isSame(game.time, 'day'));
+  const todayGame = team.games.find(game => now.isSame(game.time, 'day'));
 
   if (!todayGame) {
     await context.sendText(
-      `【${name}】今天沒有比賽哦！🏀`,
+      `【${team.name}】今天沒有比賽哦！🏀`,
       quickReply([
         '富邦下一場',
         '夢想家下一場',
@@ -54,7 +58,7 @@ async function FindTodayGame(context, { name }) {
 
   const isLord = todayGame.challenge.split('vs')[1] === team;
   await context.sendText(
-    `【${name}今日賽程】(${isLord ? '主場' : '客場'})\n🏀 ${
+    `【${team.name}今日賽程】(${isLord ? '主場' : '客場'})\n🏀 ${
       todayGame.challenge
     }\n📍 ${todayGame.location ? todayGame.location : '查無此項'}\n⏰ ${
       todayGame.time

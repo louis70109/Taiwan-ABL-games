@@ -1219,10 +1219,10 @@ body-parser@1.19.0, body-parser@^1.19.0:
     raw-body "2.4.0"
     type-is "~1.6.17"
 
-bottender@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/bottender/-/bottender-1.0.0.tgz#c53979eb032cc00763cbdf143b7c51fed560288b"
-  integrity sha512-ol/nFwGTTi8YlpuiMpT+FQWkQ3xHfR4/ek8pbAXP2ePnKeefNoBVo83dWUXw3i/RecuQPcB9Bz1i7aFX1UOOwQ==
+bottender@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/bottender/-/bottender-1.0.3.tgz#1ea6dfcf7e86ae2f21ac92b931d8f178adec92d6"
+  integrity sha512-xJ1VWR0YgLS2WkUMIVWeUaRgRCjZluvj+Igrr5OybTL7bcQZ05nM3qC9pH5pFI/c1SvWlT0NS36TjLkcqxzQmg==
   dependencies:
     "@bottender/express" "^1.0.0"
     "@hapi/joi" "^15.1.1"
@@ -1252,7 +1252,7 @@ bottender@1.0.0:
     lru-cache "^5.1.1"
     messaging-api-common "^1.0.0-beta.5"
     messaging-api-line "^1.0.0-beta.5"
-    messaging-api-messenger "^1.0.0-beta.5"
+    messaging-api-messenger "^1.0.0-beta.10"
     messaging-api-slack "^1.0.0-beta.5"
     messaging-api-telegram "^1.0.0-beta.5"
     messaging-api-viber "^1.0.0-beta.2"
@@ -4242,7 +4242,7 @@ messaging-api-line@^1.0.0-beta.5:
     messaging-api-common "^1.0.0-beta.5"
     warning "^4.0.3"
 
-messaging-api-messenger@^1.0.0-beta.5:
+messaging-api-messenger@^1.0.0-beta.10:
   version "1.0.0-beta.10"
   resolved "https://registry.yarnpkg.com/messaging-api-messenger/-/messaging-api-messenger-1.0.0-beta.10.tgz#ced74a88af54b5a0d0e09d383692401257a988f8"
   integrity sha512-y0Mi0OneGPS1MsjtI6rRUNVYuJtcvDWjJI+E0zd3EVHS79B6/DSPVkK10FsCRe0VyzM/P9RhSaNyMgVt1s9Aqw==
