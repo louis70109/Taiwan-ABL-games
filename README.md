@@ -2,7 +2,7 @@
 
 這專案為了準備去 [GDG Taichung 2019 Hackthon party](https://www.meetup.com/GDGTaichung/events/266686542/) 所做的 Side project。
 
-主要功能是因為最近看球賽看太多，因為賽程表都是固定的索性自己弄了一隻機器人出來查詢賽程。
+功能是因為最近看球賽看太多，因為賽程表都是固定的索性自己弄了一隻機器人出來查詢賽程。
 
 主要用到下面兩個技術:
 - [Bottender](https://github.com/Yoctol/bottender)
@@ -39,3 +39,5 @@ npx bottender dev --console
 可以透過以上內容去對應測試，就會得到 Dialogflow 幫忙輸出的意圖。
 
 ## 部署
+
+這隻機器人部署在 Heroku 上，需要部署的話參考[這邊文章](https://ithelp.ithome.com.tw/articles/10228055)。
