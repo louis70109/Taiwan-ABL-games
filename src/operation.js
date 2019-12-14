@@ -20,21 +20,38 @@ function selectTeam(team) {
   };
 }
 
+async function ReplyGameMessage(context, { team, subName, gameList }) {
+  // gameType -> Next or Today
+  const isLord = gameList.challenge.split('vs')[1] === team.name;
+
+  await context.sendText(
+    `【${subName}下次賽程】(${isLord ? '主場' : '客場'})\n🏀 ${
+      gameList.challenge
+    }\n📍 ${gameList.location ? gameList.location : '查無此項'}\n⏰ ${
+      gameList.time
+    }`,
+    quickReply(['富邦下一場', '夢想家下一場', '富邦今天賽程', '夢想家今日賽程'])
+  );
+}
+
 async function FindNextGame(context, { name }) {
   let now = moment();
   let team = selectTeam(name);
 
   const nextGame = team.games.find(game => now.isBefore(game.time));
-
-  const isLord = nextGame.challenge.split('vs')[1] === team;
-  await context.sendText(
-    `【${team.name}下次賽程】(${isLord ? '主場' : '客場'})\n🏀 ${
-      nextGame.challenge
-    }\n📍 ${nextGame.location ? nextGame.location : '查無此項'}\n⏰ ${
-      nextGame.time
-    }`,
-    quickReply(['富邦下一場', '夢想家下一場', '富邦今天賽程', '夢想家今日賽程'])
-  );
+  if (!nextGame) {
+    await context.sendText(
+      `【${name}】這季比賽結束囉！🏀`,
+      quickReply([
+        '富邦下一場',
+        '夢想家下一場',
+        '富邦今天賽程',
+        '夢想家今日賽程',
+      ])
+    );
+    return;
+  }
+  ReplyGameMessage(context, { team: team, subName: name, gameList: nextGame });
 }
 
 async function FindTodayGame(context, { name }) {
@@ -45,7 +62,7 @@ async function FindTodayGame(context, { name }) {
 
   if (!todayGame) {
     await context.sendText(
-      `【${team.name}】今天沒有比賽哦！🏀`,
+      `【${name}】今天沒有比賽哦！🏀`,
       quickReply([
         '富邦下一場',
         '夢想家下一場',
@@ -55,16 +72,7 @@ async function FindTodayGame(context, { name }) {
     );
     return;
   }
-
-  const isLord = todayGame.challenge.split('vs')[1] === team;
-  await context.sendText(
-    `【${team.name}今日賽程】(${isLord ? '主場' : '客場'})\n🏀 ${
-      todayGame.challenge
-    }\n📍 ${todayGame.location ? todayGame.location : '查無此項'}\n⏰ ${
-      todayGame.time
-    }`,
-    quickReply(['富邦下一場', '夢想家下一場', '富邦今天賽程', '夢想家今日賽程'])
-  );
+  ReplyGameMessage(context, { team: team, subName: name, gameList: todayGame });
 }
 
 module.exports = {
