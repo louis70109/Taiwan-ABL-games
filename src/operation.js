@@ -33,7 +33,7 @@ async function ReplyGameMessage(context, { team, subName, gameList }) {
       gameList.challenge
     }\n📍 ${gameList.location ? gameList.location : '查無此項'}\n⏰ ${
       gameList.time
-    }\n\n👀 直播: \n${TEAMS[subName].streams.lineToday}\n${
+    }\n\n👀 直播: \n${TEAMS[subName].streams.lineToday}\n\n${
       TEAMS[subName].streams.camerabay
     }`,
     quickReply(['富邦下一場', '夢想家下一場', '富邦今天賽程', '夢想家今日賽程'])
