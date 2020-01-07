@@ -14,6 +14,10 @@
 
 <a href="https://line.me/R/ti/p/%40144vqxgp"><img height="50" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
 
+## 快照
+
+![](https://i.imgur.com/qdoYoBo.png)
+
 ## 準備
 需要擁有 Dialogflow API 的 json key，若不知怎麼申請拿到的話可以參考[我的部落格](https://nijialin.com/2019/12/10/Bottender-x-Dialogflow-x-LINE/)
 
