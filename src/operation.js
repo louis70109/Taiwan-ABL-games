@@ -6,10 +6,18 @@ const TEAMS = {
   富邦: {
     name: '台北富邦勇士',
     games: require('./fubonGames.json'),
+    streams: {
+      lineToday: 'https://lin.ee/tWQDyfJ/fubon',
+      camerabay: 'https://www.camerabay.tv/channel/ablfubon',
+    },
   },
   夢想家: {
     name: '寶島夢想家',
     games: require('./dreamerGames.json'),
+    streams: {
+      lineToday: 'https://lin.ee/x1yx6T/dreamers',
+      camerabay: 'https://www.camerabay.tv/channel/ablformosa',
+    },
   },
 };
 
@@ -18,7 +26,6 @@ function selectTeam(team) {
 }
 
 async function ReplyGameMessage(context, { team, subName, gameList }) {
-  // gameType -> Next or Today
   const isLord = gameList.challenge.split('vs')[1] === team.name;
 
   await context.sendText(
@@ -26,6 +33,8 @@ async function ReplyGameMessage(context, { team, subName, gameList }) {
       gameList.challenge
     }\n📍 ${gameList.location ? gameList.location : '查無此項'}\n⏰ ${
       gameList.time
+    }\n\n👀 直播: \n${TEAMS[subName].streams.lineToday}\n${
+      TEAMS[subName].streams.camerabay
     }`,
     quickReply(['富邦下一場', '夢想家下一場', '富邦今天賽程', '夢想家今日賽程'])
   );
@@ -36,6 +45,7 @@ async function FindNextGame(context, { name }) {
   let team = selectTeam(name);
 
   const nextGame = team.games.find(game => now.isBefore(game.time));
+
   if (!nextGame) {
     await context.sendText(
       `【${name}】這季比賽結束囉！🏀`,
@@ -76,4 +86,5 @@ module.exports = {
   selectTeam,
   FindTodayGame,
   FindNextGame,
+  ReplyGameMessage,
 };
