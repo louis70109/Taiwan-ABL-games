@@ -9,7 +9,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "bottender": "^1.0.3",
+    "@bottender/dialogflow": "^1.2.0-alpha.6",
+    "bottender": "^1.2.0-alpha.6",
     "date-fns": "^2.8.1",
     "dialogflow": "^1.0.0",
     "moment": "^2.24.0"
