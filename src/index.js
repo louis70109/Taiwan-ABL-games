@@ -1,47 +1,25 @@
-const dialogflow = require('dialogflow');
-const { withProps } = require('bottender');
+const dialogflow = require('@bottender/dialogflow');
+const { chain, withProps } = require('bottender');
 
 const { FindNextGame, FindTodayGame } = require('./operation');
-
-const PROJECT_ID = process.env.GOOGLE_APPLICATION_PROJECT_ID;
-
-const sessionClient = new dialogflow.SessionsClient();
 
 async function Unknown(context) {
   await context.sendText('您輸入的內容我不懂哦~🏀');
 }
 
-module.exports = async function App(context) {
-  if (context.event.isText) {
-    const sessionPath = sessionClient.sessionPath(
-      PROJECT_ID,
-      context.session.id
-    );
-    const request = {
-      session: sessionPath,
-      queryInput: {
-        text: {
-          text: context.event.text,
-          languageCode: 'zh-tw',
-        },
+module.exports = async function App() {
+  return chain([
+    dialogflow({
+      projectId: process.env.GOOGLE_APPLICATION_PROJECT_ID,
+      languageCode: 'zh-tw',
+      timeZone: 'Asia/Taipei',
+      actions: {
+        'fubon-current-game': withProps(FindTodayGame, { name: '富邦' }),
+        'fubon-next-game': withProps(FindNextGame, { name: '富邦' }),
+        'dreamer-current-game': withProps(FindTodayGame, { name: '夢想家' }),
+        'dreamer-next-game': withProps(FindNextGame, { name: '夢想家' }),
       },
-      queryParams: {
-        timeZone: 'Asia/Taipei',
-      },
-    };
-
-    const responses = await sessionClient.detectIntent(request);
-    const { intent } = responses[0].queryResult;
-    if (!intent) return Unknown;
-
-    if (intent.displayName === 'fubon-next-game') {
-      return withProps(FindNextGame, { name: '富邦' });
-    } else if (intent.displayName === 'dreamer-next-game') {
-      return withProps(FindNextGame, { name: '夢想家' });
-    } else if (intent.displayName === 'dreamer-current-game') {
-      return withProps(FindTodayGame, { name: '夢想家' });
-    } else if (intent.displayName === 'fubon-current-game') {
-      return withProps(FindTodayGame, { name: '富邦' });
-    }
-  }
+    }),
+    Unknown,
+  ]);
 };

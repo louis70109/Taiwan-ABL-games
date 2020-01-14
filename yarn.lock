@@ -130,6 +130,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@bottender/dialogflow@^1.2.0-alpha.6":
+  version "1.2.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/@bottender/dialogflow/-/dialogflow-1.2.0-alpha.6.tgz#a520ccae7956461408b3d0e8ea3867f4f5a29446"
+  integrity sha512-kx4GkU/yrcUIerctyvmxESs0cQAtLBTMB75MFBb6Fznx+aQDLW6kh5miiMxCsi3V9vdRNqoETWl7rD9LmtutkA==
+  dependencies:
+    dialogflow "^1.0.0"
+
 "@bottender/express@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@bottender/express/-/express-1.0.0.tgz#23784b605ff755947f9d1b850dc02b1caa686559"
@@ -1219,10 +1226,10 @@ body-parser@1.19.0, body-parser@^1.19.0:
     raw-body "2.4.0"
     type-is "~1.6.17"
 
-bottender@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/bottender/-/bottender-1.0.3.tgz#1ea6dfcf7e86ae2f21ac92b931d8f178adec92d6"
-  integrity sha512-xJ1VWR0YgLS2WkUMIVWeUaRgRCjZluvj+Igrr5OybTL7bcQZ05nM3qC9pH5pFI/c1SvWlT0NS36TjLkcqxzQmg==
+bottender@^1.2.0-alpha.6:
+  version "1.2.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/bottender/-/bottender-1.2.0-alpha.6.tgz#f601c2961f0f23050453c63e0b88a721e9fc8e5d"
+  integrity sha512-6VFUlLAstDHRfqD4gjCcAUydaLP0is5Pnvttw9GMbvUNyQDfKIUTsEImqE3TN5hNrz6Ww3mJwZOp+3hRG6NGWA==
   dependencies:
     "@bottender/express" "^1.0.0"
     "@hapi/joi" "^15.1.1"
@@ -1253,7 +1260,7 @@ bottender@^1.0.3:
     messaging-api-common "^1.0.0-beta.5"
     messaging-api-line "^1.0.0-beta.5"
     messaging-api-messenger "^1.0.0-beta.10"
-    messaging-api-slack "^1.0.0-beta.5"
+    messaging-api-slack "^1.0.0-beta.10"
     messaging-api-telegram "^1.0.0-beta.5"
     messaging-api-viber "^1.0.0-beta.2"
     messenger-batch "^0.3.1"
@@ -4256,7 +4263,7 @@ messaging-api-messenger@^1.0.0-beta.10:
     messaging-api-common "^1.0.0-beta.5"
     warning "^4.0.3"
 
-messaging-api-slack@^1.0.0-beta.5:
+messaging-api-slack@^1.0.0-beta.10:
   version "1.0.0-beta.10"
   resolved "https://registry.yarnpkg.com/messaging-api-slack/-/messaging-api-slack-1.0.0-beta.10.tgz#cac527fd46b0e580b0b14edc967b1496a4325b0d"
   integrity sha512-L9aeVWA0Ajr3xM8vPjbYJ3/kDbH+BVl49k4tFjzZ9laJxupTuKekMWF8Dqmh5MO8/6XAAJa9aZObivUEFuy8iQ==
