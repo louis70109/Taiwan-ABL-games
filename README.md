@@ -16,7 +16,7 @@
 
 ## 快照
 
-![](https://i.imgur.com/qdoYoBo.png)
+![](https://i.imgur.com/qdoYoBol.png)
 
 ## 準備
 需要擁有 Dialogflow API 的 json key，若不知怎麼申請拿到的話可以參考[我的部落格](https://nijialin.com/2019/12/10/Bottender-x-Dialogflow-x-LINE/)
