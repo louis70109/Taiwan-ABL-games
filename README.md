@@ -1,5 +1,7 @@
 # ABL 台灣隊賽程機器人 🇹🇼
 
+> 最近因為疫情的關係導致 ABL 停賽了，因此這隻機器人現在也是處於無用狀態 😭😷
+
 這專案為了準備去 [GDG Taichung 2019 Hackthon party](https://www.meetup.com/GDGTaichung/events/266686542/) 所做的 Side project。
 
 功能是因為最近看球賽看太多，因為賽程表都是固定的索性自己弄了一隻機器人出來查詢賽程。
